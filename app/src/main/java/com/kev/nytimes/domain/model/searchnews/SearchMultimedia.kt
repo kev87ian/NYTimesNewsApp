@@ -1,17 +1,21 @@
-package com.kev.nytimes.data.remote.dto.latestnews
+package com.kev.nytimes.domain.model.searchnews
 
 
 import com.google.gson.annotations.SerializedName
 
-data class MultimediaDTO(
+data class SearchMultimedia(
     @SerializedName("caption")
-    val caption: String,
-    @SerializedName("copyright")
-    val copyright: String,
-    @SerializedName("format")
-    val format: String,
+    val caption: Any?,
+    @SerializedName("credit")
+    val credit: Any?,
+    @SerializedName("crop_name")
+    val cropName: String,
     @SerializedName("height")
     val height: Int,
+    @SerializedName("legacy")
+    val legacy: Legacy?,
+    @SerializedName("rank")
+    val rank: Int,
     @SerializedName("subtype")
     val subtype: String,
     @SerializedName("type")

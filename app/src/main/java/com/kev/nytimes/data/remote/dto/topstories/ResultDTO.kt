@@ -1,4 +1,4 @@
-package com.kev.nytimes.data.remote.dto.latestnews
+package com.kev.nytimes.data.remote.dto.topstories
 
 
 import com.google.gson.annotations.SerializedName

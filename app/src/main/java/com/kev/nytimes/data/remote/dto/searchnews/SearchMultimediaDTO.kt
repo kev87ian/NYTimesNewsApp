@@ -2,6 +2,7 @@ package com.kev.nytimes.data.remote.dto.searchnews
 
 
 import com.google.gson.annotations.SerializedName
+import com.kev.nytimes.domain.model.searchnews.SearchMultimedia
 
 data class SearchMultimediaDTO(
     @SerializedName("caption")
@@ -26,4 +27,19 @@ data class SearchMultimediaDTO(
     val url: String,
     @SerializedName("width")
     val width: Int
-)
+){
+    fun toDomainMultimedia(): SearchMultimedia{
+        return SearchMultimedia(
+            caption = caption,
+            credit = credit,
+            cropName = cropName,
+            height = height,
+            legacy =  legacyDTO?.toDomainLegacy(),
+            rank = rank,
+            type = type,
+            url = url,
+            width = width,
+            subtype = subtype
+        )
+    }
+}

@@ -1,10 +1,9 @@
-package com.kev.nytimes.data.remote.dto.searchnews
+package com.kev.nytimes.domain.model.searchnews
 
 
 import com.google.gson.annotations.SerializedName
-import com.kev.nytimes.domain.model.searchnews.Legacy
 
-data class LegacyDTO(
+data class Legacy(
     @SerializedName("thumbnail")
     val thumbnail: String?,
     @SerializedName("thumbnailheight")
@@ -23,18 +22,4 @@ data class LegacyDTO(
     val xlargeheight: Int?,
     @SerializedName("xlargewidth")
     val xlargewidth: Int?
-){
-    fun toDomainLegacy(): Legacy{
-        return Legacy(
-            thumbnail = thumbnail,
-            thumbnailheight = thumbnailheight,
-            thumbnailwidth  = thumbnailwidth,
-            wide = wide,
-            wideheight = wideheight,
-            widewidth = widewidth,
-            xlarge = xlarge,
-            xlargeheight = xlargeheight,
-            xlargewidth = xlargewidth
-        )
-    }
-}
+)

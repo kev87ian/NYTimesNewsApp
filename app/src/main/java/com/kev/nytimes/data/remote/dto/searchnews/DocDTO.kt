@@ -2,6 +2,7 @@ package com.kev.nytimes.data.remote.dto.searchnews
 
 
 import com.google.gson.annotations.SerializedName
+import com.kev.nytimes.domain.model.searchnews.Doc
 
 data class DocDTO(
     @SerializedName("abstract")
@@ -24,5 +25,19 @@ data class DocDTO(
     val uri: String,
     @SerializedName("web_url")
     val webUrl: String,
-
-)
+){
+    fun toDomainDoc(): Doc {
+        return Doc(
+            abstract = abstract,
+            byline = bylineDTO.toDomainByline(),
+            documentType = documentType,
+            id = id,
+            leadParagraph = leadParagraph,
+            searchMultimedia = searchMultimediaDTO.map { it.toDomainMultimedia() },
+            pubDate = pubDate,
+            snippet = snippet,
+            uri = uri,
+            webUrl = webUrl
+        )
+    }
+}
