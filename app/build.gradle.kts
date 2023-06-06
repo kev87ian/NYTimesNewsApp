@@ -76,6 +76,7 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+    // animated bottom nav bar
     // Coil Compose
     implementation(libs.coil.compose)
     // Dagger
@@ -86,8 +87,8 @@ dependencies {
     // Lifecycle Dependencies
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-
-
+    // Lottie
+    implementation (libs.lottie.compose)
     // navigation
     implementation(libs.androidx.navigation.compose)
     // Paging
@@ -95,7 +96,7 @@ dependencies {
     implementation(libs.androidx.paging.compose)
     // room
     implementation (libs.androidx.room.runtime)
-    kapt ("androidx.room:room-compiler:2.3.0")
+    kapt (libs.androidx.room.compiler)
     // retrofit
     implementation(libs.retrofit)
     implementation(libs.okhttp)

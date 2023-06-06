@@ -1,6 +1,5 @@
 package com.kev.nytimes.di
 
-import com.google.gson.Gson
 import com.kev.nytimes.core.Constants
 import com.kev.nytimes.data.NewsApiService
 import com.kev.nytimes.data.repository.NewsRepositoryImpl
