@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "Running lint check..."
+
+./gradlew app:ktlintCheck --daemon
+
+status=$?
+
+# return 1 exit code if running checks fails

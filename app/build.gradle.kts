@@ -1,3 +1,4 @@
+import com.android.build.api.dsl.LintOptions
 
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
@@ -6,6 +7,7 @@ plugins {
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
     alias(libs.plugins.kapt)
     alias(libs.plugins.dagger.hilt)
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
@@ -23,6 +25,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
     }
 
     buildTypes {
@@ -90,7 +93,9 @@ dependencies {
     // Paging
     implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.androidx.paging.compose)
-
+    // room
+    implementation (libs.androidx.room.runtime)
+    kapt ("androidx.room:room-compiler:2.3.0")
     // retrofit
     implementation(libs.retrofit)
     implementation(libs.okhttp)

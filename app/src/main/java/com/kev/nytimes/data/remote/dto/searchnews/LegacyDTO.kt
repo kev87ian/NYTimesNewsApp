@@ -27,14 +27,14 @@ data class LegacyDTO(
     fun toDomainLegacy(): Legacy{
         return Legacy(
             thumbnail = thumbnail,
-            thumbnailheight = thumbnailheight,
-            thumbnailwidth  = thumbnailwidth,
+            thumbnailHeight = thumbnailheight,
+            thumbnailWidth  = thumbnailwidth,
             wide = wide,
-            wideheight = wideheight,
-            widewidth = widewidth,
-            xlarge = xlarge,
-            xlargeheight = xlargeheight,
-            xlargewidth = xlargewidth
+            wideHeight = wideheight,
+            wideWidth = widewidth,
+            xLarge = xlarge,
+            xLargeHeight = xlargeheight,
+            xLargeWidth = xlargewidth
         )
     }
 }

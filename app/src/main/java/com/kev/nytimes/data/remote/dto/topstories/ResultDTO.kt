@@ -2,6 +2,7 @@ package com.kev.nytimes.data.remote.dto.topstories
 
 
 import com.google.gson.annotations.SerializedName
+import com.kev.nytimes.domain.model.topstories.Result
 
 data class ResultDTO(
     @SerializedName("abstract")
@@ -20,4 +21,17 @@ data class ResultDTO(
     val updatedDate: String,
     @SerializedName("url")
     val url: String
-)
+){
+    fun toDomainResult(): Result{
+        return Result(
+            abstract = abstract,
+            author = author,
+            multimedia = multimediaDTO?.map { it.toDomainMultiMedia() },
+            publishedDate = publishedDate,
+            source = source,
+            title = title,
+            updatedDate = updatedDate,
+            url = url
+        )
+    }
+}
