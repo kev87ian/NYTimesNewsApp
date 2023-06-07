@@ -17,6 +17,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.kev.nytimes.presentation.mostviewedarticles.MostViewedArticlesScreen
 import com.kev.nytimes.presentation.searcharticles.SearchArticlesScreen
 import com.kev.nytimes.presentation.toparticles.TopArticlesScreen
+import com.kev.nytimes.ui.theme.RobotoBold
+import com.kev.nytimes.ui.theme.RobotoSemiBold
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,7 +40,11 @@ fun MainScreen(navController: NavHostController) {
                             Icon(imageVector = item.icon, contentDescription = "Bottom Icon")
                         },
                         label = {
-                            Text(text = item.title, fontWeight = FontWeight.SemiBold)
+                            Text(
+                                text = item.title,
+                                fontWeight = FontWeight.SemiBold,
+                                fontFamily = RobotoSemiBold
+                            )
                         },
                         alwaysShowLabel = false
                     )
