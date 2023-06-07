@@ -4,6 +4,7 @@ import com.kev.nytimes.core.Constants
 import com.kev.nytimes.data.NewsApiService
 import com.kev.nytimes.data.repository.NewsRepositoryImpl
 import com.kev.nytimes.domain.repository.NewsRepository
+import com.kev.nytimes.domain.usecases.GetMostViewedArticlesUseCase
 import com.kev.nytimes.domain.usecases.GetTopArticlesUseCase
 import com.kev.nytimes.domain.usecases.SearchArticlesUseCase
 import dagger.Module
@@ -70,7 +71,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun providesMostViewedArticlesUseCase(repository: NewsRepository): GetTopArticlesUseCase{
-        return GetTopArticlesUseCase(repository)
+    fun providesMostViewedArticlesUseCase(repository: NewsRepository): GetMostViewedArticlesUseCase{
+        return GetMostViewedArticlesUseCase(repository)
     }
 }

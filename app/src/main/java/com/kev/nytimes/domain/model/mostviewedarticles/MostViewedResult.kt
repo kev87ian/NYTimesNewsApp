@@ -1,8 +1,6 @@
 package com.kev.nytimes.domain.model.mostviewedarticles
 
 
-import com.google.gson.annotations.SerializedName
-
 data class MostViewedResult(
     val `abstract`: String,
     val byline: String,
@@ -10,6 +8,7 @@ data class MostViewedResult(
     val media: List<Media>,
     val publishedDate: String,
     val title: String,
+    val section: String,
     val updated: String,
     val uri: String,
     val url: String

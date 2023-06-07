@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.sp
 import com.kev.nytimes.R
 
 // Set of Material typography styles to start with
-/*val Typography = Typography(
+val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
@@ -33,9 +33,10 @@ import com.kev.nytimes.R
         letterSpacing = 0.5.sp
     )
 
-)*/
+)
 
 val RobotoBold = FontFamily(Font(R.font.roboto_bold))
 val RobotoSemiBold = FontFamily(Font(R.font.roboto_medium))
 val RobotoBoldItalic = FontFamily(Font(R.font.roboto_bold_italic))
 val RobotoRegular = FontFamily(Font(R.font.roboto_reglar))
+val RobotoLight = FontFamily(Font(R.font.roboto_light))

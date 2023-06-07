@@ -17,6 +17,8 @@ data class MostViewedResultDTO(
     val publishedDate: String,
     @SerializedName("title")
     val title: String,
+    @SerializedName("section")
+    val section: String,
     @SerializedName("updated")
     val updated: String,
     @SerializedName("uri")
@@ -34,7 +36,9 @@ data class MostViewedResultDTO(
             title = title,
             updated = updated,
             uri = uri,
-            url = url
+            url = url,
+            section = section
+
         )
     }
 }

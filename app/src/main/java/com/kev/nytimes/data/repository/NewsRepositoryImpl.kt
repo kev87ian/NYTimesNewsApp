@@ -22,13 +22,16 @@ class NewsRepositoryImpl constructor(
             val networkResponse = apiService.getTopStories().resultDTOS
             emit(Resource.Success(networkResponse.map { it.toDomainResult() }))
         } catch (e: Exception) {
-            Timber.e(e.localizedMessage)
+            e.printStackTrace()
+
             emit(Resource.Error(e.localizedMessage ?: "An unknown error occurred"))
         } catch (e: IOException) {
-            Timber.e("IoException")
+            e.printStackTrace()
+
             emit(Resource.Error("Please ensure you have an active internet connection."))
         } catch (e: HttpException) {
-            Timber.e("HTTP Exception")
+            e.printStackTrace()
+
             if (e.code() == 500) {
                 emit(Resource.Error("We're unable to reach servers. Please retry"))
             }
@@ -46,13 +49,13 @@ class NewsRepositoryImpl constructor(
             val apiResponse = apiService.searchArticles(query).searchResponseDTO.docDTOS
             emit(Resource.Success(apiResponse.map { it.toDomainDoc() }))
         }catch (e: Exception) {
-            Timber.e(e.localizedMessage)
+           e.printStackTrace()
             emit(Resource.Error(e.localizedMessage ?: "An unknown error occurred"))
         } catch (e: IOException) {
-            Timber.e("IoException")
+            e.printStackTrace()
             emit(Resource.Error("Please ensure you have an active internet connection."))
         } catch (e: HttpException) {
-            Timber.e("HTTP Exception")
+            e.printStackTrace()
             if (e.code() == 500) {
                 emit(Resource.Error("We're unable to reach servers. Please retry"))
             }
