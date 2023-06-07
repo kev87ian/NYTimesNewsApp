@@ -1,5 +1,7 @@
 package com.kev.nytimes.presentation.toparticles
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,7 +19,13 @@ import com.kev.nytimes.domain.model.topstories.Result
 import com.kev.nytimes.ui.theme.RobotoBold
 import com.kev.nytimes.ui.theme.RobotoLight
 import com.kev.nytimes.ui.theme.RobotoRegular
+import java.time.LocalDateTime
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopArticlesItemComposable(
@@ -32,16 +40,24 @@ fun TopArticlesItemComposable(
         Row(
             modifier = Modifier.padding(16.dp).fillMaxSize()
         ) {
-
             Column {
                 result.section?.let { Text(text = it, fontFamily = RobotoLight) }
                 Spacer(modifier = Modifier.height(8.dp))
                 result.title?.let { Text(text = it, fontFamily = RobotoBold) }
                 Spacer(modifier = Modifier.height(8.dp))
                 result.byline?.let { Text(text = it, fontFamily = RobotoRegular) }
-                Text(text = "Updated at:".plus(result.updatedDate))
+                val lastUpdate = result.updatedDate?.let { convertTime(it) }
+                Text(text = "Updated ".plus(lastUpdate))
             }
         }
 //
     }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun convertTime(timeStamp: String): String {
+    val formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH)
+    val dateTime = OffsetDateTime.parse(timeStamp)
+
+    return dateTime.format(formatter)
 }

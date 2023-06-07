@@ -1,6 +1,8 @@
 package com.kev.nytimes.presentation.navigation
 
 import android.annotation.SuppressLint
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -22,6 +24,7 @@ import com.kev.nytimes.presentation.searcharticles.SearchArticlesScreen
 import com.kev.nytimes.presentation.toparticles.TopArticlesScreen
 import com.kev.nytimes.ui.theme.RobotoSemiBold
 
+@RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -33,7 +36,6 @@ fun MainScreen(navController: NavHostController) {
         bottomBar = {
             NavigationBar(
                 containerColor = MaterialTheme.colorScheme.background,
-                modifier = Modifier.padding(top = 58.dp)
             ) {
                 navItems.forEach { item ->
                     NavigationBarItem(
@@ -57,7 +59,7 @@ fun MainScreen(navController: NavHostController) {
     ) {
         NavHost(navController = navController, startDestination = NavItem.TopArticles.route) {
             composable(route = NavItem.TopArticles.route) {
-                TopArticlesScreen(modifier = Modifier.padding(bottom = 48.dp))
+                TopArticlesScreen()
             }
             composable(route = NavItem.MostViewedArticles.route) {
                 MostViewedArticlesScreen()

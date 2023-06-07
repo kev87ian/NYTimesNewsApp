@@ -8,6 +8,7 @@ import com.kev.nytimes.core.Resource
 import com.kev.nytimes.domain.usecases.GetTopArticlesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -22,6 +23,7 @@ class TopArticlesViewModel @Inject constructor(
     val state: State<TopArticlesState> = _state
 
     fun getTopArticles() = viewModelScope.launch(Dispatchers.IO) {
+
         topArticlesUseCase.getTopArticles().onEach { result ->
 
             when (result) {
