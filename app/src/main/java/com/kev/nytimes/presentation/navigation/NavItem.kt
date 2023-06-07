@@ -1,6 +1,7 @@
 package com.kev.nytimes.presentation.navigation
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -20,5 +21,10 @@ sealed class NavItem(
         title = "Search Articles",
         icon = Icons.Default.Search,
         route = "search_articles_screen"
+    )
+    object MostViewedArticles: NavItem(
+        title = "Popular Articles",
+        icon = Icons.Default.KeyboardArrowUp,
+        route = "popular_articles-screen"
     )
 }

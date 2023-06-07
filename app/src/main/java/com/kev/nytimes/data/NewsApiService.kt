@@ -1,6 +1,7 @@
 package com.kev.nytimes.data
 
 import com.kev.nytimes.BuildConfig
+import com.kev.nytimes.data.remote.dto.mostviewed.MostViewedArticlesDTO
 import com.kev.nytimes.data.remote.dto.searchnews.SearchArticlesDTO
 import com.kev.nytimes.data.remote.dto.topstories.TopStoriesDTO
 import retrofit2.http.GET
@@ -17,4 +18,9 @@ interface NewsApiService {
         @Query("q") articleTitle: String,
         @Query("api-key") apiKey: String = BuildConfig.API_KEY
     ): SearchArticlesDTO
+
+    @GET("mostpopular/v2/viewed/1.json")
+    suspend fun getMostViewedArticles(
+        @Query("api-key") apiKey: String = BuildConfig.API_KEY
+    ): MostViewedArticlesDTO
 }

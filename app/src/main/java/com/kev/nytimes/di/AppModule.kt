@@ -67,4 +67,10 @@ object AppModule {
     fun providesSearchArticlesUseCase(repository: NewsRepository): SearchArticlesUseCase{
         return SearchArticlesUseCase(repository)
     }
+
+    @Singleton
+    @Provides
+    fun providesMostViewedArticlesUseCase(repository: NewsRepository): GetTopArticlesUseCase{
+        return GetTopArticlesUseCase(repository)
+    }
 }
