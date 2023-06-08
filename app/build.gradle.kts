@@ -1,6 +1,13 @@
+import com.android.build.api.dsl.LintOptions
+
+@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.com.android.application)
+    alias(libs.plugins.org.jetbrains.kotlin.android)
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    alias(libs.plugins.kapt)
+    alias(libs.plugins.dagger.hilt)
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
@@ -18,6 +25,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
     }
 
     buildTypes {
@@ -38,9 +46,10 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.3.2"
     }
     packaging {
         resources {
@@ -51,19 +60,55 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
-    implementation("androidx.activity:activity-compose:1.7.2")
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation(libs.core.ktx)
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.activity.compose)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.ui)
+    implementation(libs.ui.graphics)
+    implementation(libs.ui.tooling.preview)
+    implementation(libs.material3)
+    testImplementation(libs.junit)
+    testImplementation(libs.junit.jupiter)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.ui.tooling)
+    debugImplementation(libs.ui.test.manifest)
+    // animated bottom nav bar
+    // Coil Compose
+    implementation(libs.coil.compose)
+    // Dagger
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    kapt(libs.androidx.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+    // Lifecycle Dependencies
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    // Lottie
+    implementation (libs.lottie.compose)
+    // navigation
+    implementation(libs.androidx.navigation.compose)
+    // Paging
+    implementation(libs.androidx.paging.runtime.ktx)
+    implementation(libs.androidx.paging.compose)
+    // room
+    implementation (libs.androidx.room.runtime)
+    kapt (libs.androidx.room.compiler)
+    // retrofit
+    implementation(libs.retrofit)
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+    implementation(libs.converter.gson)
+    // splash screen
+    implementation (libs.androidx.core.splashscreen)
+
+
+    // Timber
+    implementation (libs.timber)
+
+    // testImplementation
+    testImplementation(libs.mockito.core)
 }
