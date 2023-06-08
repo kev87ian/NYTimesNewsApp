@@ -1,6 +1,9 @@
 package com.kev.nytimes.presentation.toparticles
 
 import android.os.Build
+import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,13 +18,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 import com.kev.nytimes.domain.model.topstories.Result
 import com.kev.nytimes.ui.theme.RobotoBold
 import com.kev.nytimes.ui.theme.RobotoLight
 import com.kev.nytimes.ui.theme.RobotoRegular
-import java.time.LocalDateTime
 import java.time.OffsetDateTime
-import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
@@ -33,7 +35,9 @@ fun TopArticlesItemComposable(
 
 ) {
     Card(
-        onClick = { /*TODO*/ },
+        onClick = {
+
+        },
         shape = RoundedCornerShape(12.dp),
         modifier = Modifier.padding(all = 8.dp)
     ) {
@@ -54,10 +58,30 @@ fun TopArticlesItemComposable(
     }
 }
 
+
+
 @RequiresApi(Build.VERSION_CODES.O)
 fun convertTime(timeStamp: String): String {
     val formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH)
     val dateTime = OffsetDateTime.parse(timeStamp)
 
     return dateTime.format(formatter)
+}
+
+@Composable
+fun WebViewPage(url: String) {
+    // Adding a WebView inside AndroidView
+    // with layout as full screen
+    AndroidView(factory = {
+        WebView(it).apply {
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+            webViewClient = WebViewClient()
+            loadUrl(url)
+        }
+    }, update = {
+        it.loadUrl(url)
+    })
 }
