@@ -1,31 +1,35 @@
-package com.kev.nytimes.presentation.toparticles
+package com.kev.nytimes.presentation.mostviewedarticles
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kev.nytimes.core.Resource
-import com.kev.nytimes.domain.usecases.GetTopArticlesUseCase
+import com.kev.nytimes.domain.usecases.GetMostViewedArticlesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
-class TopArticlesViewModel @Inject constructor(
-    private val topArticlesUseCase: GetTopArticlesUseCase
+class MostViewedArticlesViewModel @Inject constructor(
+    private val useCase: GetMostViewedArticlesUseCase
 ) : ViewModel() {
 
-    private val _state = mutableStateOf(TopArticlesState())
-    val state: State<TopArticlesState> = _state
+    private val _state = mutableStateOf(MostViewedArticlesState())
+    val state: State<MostViewedArticlesState> = _state
 
-    fun getTopArticles() = viewModelScope.launch(Dispatchers.IO) {
-        topArticlesUseCase.getTopArticles().onEach { result ->
-
+    fun getMostViewedArticles() = viewModelScope.launch(Dispatchers.IO) {
+        useCase.getMostViewedArticles().onEach { result ->
             when (result) {
+                is Resource.Success -> {
+                    _state.value = state.value.copy(
+                        isLoading = false,
+                        errorMessage = "",
+                        data = result.data
+                    )
+                }
                 is Resource.Loading -> {
                     _state.value = state.value.copy(
                         isLoading = true,
@@ -40,14 +44,7 @@ class TopArticlesViewModel @Inject constructor(
                         data = emptyList()
                     )
                 }
-                is Resource.Success -> {
-                    _state.value = state.value.copy(
-                        isLoading = false,
-                        errorMessage = "",
-                        data = result.data
-                    )
-                }
             }
-        }.launchIn(viewModelScope)
+        }
     }
 }

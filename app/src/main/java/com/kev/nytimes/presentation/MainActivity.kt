@@ -1,4 +1,4 @@
-package com.kev.nytimes.presentation.activities
+package com.kev.nytimes.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

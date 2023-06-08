@@ -72,6 +72,3 @@ fun TopArticlesScreen() {
     }
 }
 
-@Composable
-fun LottieLoadingAnimation() {
-}
