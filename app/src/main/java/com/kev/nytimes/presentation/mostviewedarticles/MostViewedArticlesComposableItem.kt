@@ -16,11 +16,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.kev.nytimes.domain.model.mostviewedarticles.MostViewedResult
-import com.kev.nytimes.presentation.toparticles.convertTime
 import com.kev.nytimes.ui.theme.RobotoBold
 import com.kev.nytimes.ui.theme.RobotoLight
 import com.kev.nytimes.ui.theme.RobotoRegular
-import java.time.OffsetDateTime
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
@@ -29,8 +28,7 @@ import java.util.Locale
 @Composable
 fun MostViewedArticlesComposableItem(
     result: MostViewedResult
-){
-
+) {
     Card(
         onClick = { /*TODO*/ },
         shape = RoundedCornerShape(12.dp),
@@ -40,26 +38,24 @@ fun MostViewedArticlesComposableItem(
             modifier = Modifier.padding(16.dp).fillMaxSize()
         ) {
             Column {
-                result.section?.let { Text(text = it, fontFamily = RobotoLight) }
+                Text(text = result.section, fontFamily = RobotoLight)
                 Spacer(modifier = Modifier.height(8.dp))
-                result.title?.let { Text(text = it, fontFamily = RobotoBold) }
+                Text(text = result.title, fontFamily = RobotoBold)
                 Spacer(modifier = Modifier.height(8.dp))
-                result.byline?.let { Text(text = it, fontFamily = RobotoRegular) }
-                val lastUpdate = result.updated.let { convertTime(it) }
+                Text(text = result.byline, fontFamily = RobotoRegular)
+              //  val lastUpdate = convertTimeStamp(result.updated)
 
-
-                Text(text = "Updated ".plus(lastUpdate))
+              //  Text(text = "Updated at ".plus(lastUpdate))
             }
         }
 //
     }
-
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun convertTime(timeStamp: String): String {
-    val formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH)
-    val dateTime = OffsetDateTime.parse(timeStamp)
-
-    return dateTime.format(formatter)
+fun convertTimeStamp(timeStamp: String): String {
+    val inputFormat = DateTimeFormatter.ISO_LOCAL_DATE
+    val outputFormat = DateTimeFormatter.ofPattern("MMMM d',' yyyy", Locale.ENGLISH)
+    val dateTime = LocalDateTime.parse(timeStamp, inputFormat)
+    return outputFormat.format(dateTime)
 }

@@ -21,7 +21,6 @@ import com.kev.nytimes.ui.theme.RobotoLight
 import com.kev.nytimes.ui.theme.RobotoRegular
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
@@ -62,10 +61,8 @@ fun SearchArticlesItemComposable(
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun convertDate(timeStamp: String): String {
-    val inputFormat = DateTimeFormatter.ISO_OFFSET_DATE_TIME
-    val outputFormat = DateTimeFormatter.ofPattern("MMMM/dd/yyyy", Locale.ENGLISH)
-
+    val inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ")
+    val outputFormat = DateTimeFormatter.ofPattern("dd/MM/yy")
     val dateTime = LocalDateTime.parse(timeStamp, inputFormat)
     return outputFormat.format(dateTime)
-
 }

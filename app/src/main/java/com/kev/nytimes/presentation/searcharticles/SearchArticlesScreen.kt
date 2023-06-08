@@ -1,6 +1,7 @@
 package com.kev.nytimes.presentation.searcharticles
 
 import android.os.Build
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.airbnb.lottie.compose.LottieAnimation
@@ -62,7 +64,7 @@ fun SearchArticlesScreen() {
                     modifier = Modifier.fillMaxSize()
                 ) {
                     val composition by rememberLottieComposition(
-                        LottieCompositionSpec.RawRes(R.raw.loading)
+                        LottieCompositionSpec.RawRes(R.raw.searching)
                     )
 
                     LottieAnimation(
@@ -89,7 +91,7 @@ fun SearchArticlesScreen() {
                     )
                 }
             }
-            if (state.data.isEmpty() && state.errorMessage.isEmpty()) {
+            if (state.noResults) {
                 Column(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -104,10 +106,12 @@ fun SearchArticlesScreen() {
                         composition = composition,
                         iterations = LottieConstants.IterateForever
                     )
+
+
                 }
             }
             if (state.data.isNotEmpty()) {
-                LazyColumn(modifier = Modifier.fillMaxSize()) {
+                LazyColumn(modifier = Modifier.fillMaxSize().padding(bottom = 72.dp)) {
                     items(state.data.size) { i ->
                         val article = state.data[i]
                         SearchArticlesItemComposable(result = article)

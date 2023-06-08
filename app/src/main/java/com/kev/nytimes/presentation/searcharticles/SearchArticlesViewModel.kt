@@ -40,21 +40,32 @@ class SearchArticlesViewModel @Inject constructor(
                             _state.value = state.value.copy(
                                 isLoading = true,
                                 errorMessage = "",
-                                data = emptyList()
+                                data = emptyList(),
+                                noResults = false
                             )
                         }
                         is Resource.Success -> {
-                            _state.value = state.value.copy(
-                                isLoading = false,
-                                errorMessage = "",
-                                data = result.data
-                            )
+                            if (result.data.isEmpty()) {
+                                _state.value = state.value.copy(
+                                    isLoading = false,
+                                    errorMessage = "",
+                                    data = emptyList(),
+                                    noResults = true
+                                )
+                            } else {
+                                _state.value = state.value.copy(
+                                    isLoading = false,
+                                    errorMessage = "",
+                                    data = result.data,
+                                    noResults = false
+                                ) }
                         }
                         is Resource.Error -> {
                             _state.value = state.value.copy(
                                 isLoading = false,
                                 errorMessage = result.message,
-                                data = emptyList()
+                                data = emptyList(),
+                                noResults = false
                             )
                         }
                     }

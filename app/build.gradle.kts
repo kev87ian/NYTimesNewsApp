@@ -102,6 +102,9 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
     implementation(libs.converter.gson)
+    // splash screen
+    implementation (libs.androidx.core.splashscreen)
+
 
     // Timber
     implementation (libs.timber)

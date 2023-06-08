@@ -18,7 +18,6 @@ class NewsRepositoryImpl constructor(
     override suspend fun getTopStories(): Flow<Resource<List<Result>>> = flow {
         emit(Resource.Loading())
         try {
-
             val networkResponse = apiService.getTopStories().resultDTOS
             emit(Resource.Success(networkResponse.map { it.toDomainResult() }))
         } catch (e: Exception) {
@@ -48,8 +47,8 @@ class NewsRepositoryImpl constructor(
         try {
             val apiResponse = apiService.searchArticles(query).searchResponseDTO.docDTOS
             emit(Resource.Success(apiResponse.map { it.toDomainDoc() }))
-        }catch (e: Exception) {
-           e.printStackTrace()
+        } catch (e: Exception) {
+            e.printStackTrace()
             emit(Resource.Error(e.localizedMessage ?: "An unknown error occurred"))
         } catch (e: IOException) {
             e.printStackTrace()
@@ -70,9 +69,11 @@ class NewsRepositoryImpl constructor(
     override suspend fun getMostViewedArticles(): Flow<Resource<List<MostViewedResult>>> = flow {
         emit(Resource.Loading())
         try {
-            val apiResponse = apiService.getMostViewedArticles().mostViewedResultDTOS.map { it.toDomainMostViewedResult() }
+            val apiResponse = apiService.getMostViewedArticles().mostViewedResultDTOS.map {
+                it.toDomainMostViewedResult()
+            }
             emit(Resource.Success(apiResponse))
-        }catch (e: Exception) {
+        } catch (e: Exception) {
             Timber.e(e.localizedMessage)
             emit(Resource.Error(e.localizedMessage ?: "An unknown error occurred"))
         } catch (e: IOException) {
