@@ -1,8 +1,8 @@
-package com.kev.nytimes.data.remote.dto.searchnews
+package com.kev.nytimes.data.remote.dto.searcharticles
 
 
 import com.google.gson.annotations.SerializedName
-import com.kev.nytimes.domain.model.searchnews.SearchMultimedia
+import com.kev.nytimes.domain.model.searcharticles.SearchMultimedia
 
 data class SearchMultimediaDTO(
     @SerializedName("caption")

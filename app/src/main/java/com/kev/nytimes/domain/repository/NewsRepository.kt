@@ -2,7 +2,7 @@ package com.kev.nytimes.domain.repository
 
 import com.kev.nytimes.core.Resource
 import com.kev.nytimes.domain.model.mostviewedarticles.MostViewedResult
-import com.kev.nytimes.domain.model.searchnews.Doc
+import com.kev.nytimes.domain.model.searcharticles.Doc
 import com.kev.nytimes.domain.model.topstories.Result
 import kotlinx.coroutines.flow.Flow
 

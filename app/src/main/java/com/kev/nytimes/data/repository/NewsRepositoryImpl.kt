@@ -3,7 +3,7 @@ package com.kev.nytimes.data.repository
 import com.kev.nytimes.core.Resource
 import com.kev.nytimes.data.NewsApiService
 import com.kev.nytimes.domain.model.mostviewedarticles.MostViewedResult
-import com.kev.nytimes.domain.model.searchnews.Doc
+import com.kev.nytimes.domain.model.searcharticles.Doc
 import com.kev.nytimes.domain.model.topstories.Result
 import com.kev.nytimes.domain.repository.NewsRepository
 import java.io.IOException

@@ -1,7 +1,5 @@
-package com.kev.nytimes.domain.model.searchnews
+package com.kev.nytimes.domain.model.searcharticles
 
-
-import com.google.gson.annotations.SerializedName
 
 data class SearchMultimedia(
     val caption: Any?,

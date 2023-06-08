@@ -1,7 +1,5 @@
-package com.kev.nytimes.domain.model.searchnews
+package com.kev.nytimes.domain.model.searcharticles
 
-
-import com.google.gson.annotations.SerializedName
 
 data class Doc(
     val abstract: String,
@@ -9,6 +7,7 @@ data class Doc(
     val documentType: String,
     val id: String,
     val leadParagraph: String,
+    val sectionName: String,
     val searchMultimedia: List<SearchMultimedia>,
     val pubDate: String,
     val snippet: String,

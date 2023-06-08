@@ -1,4 +1,4 @@
-package com.kev.nytimes.domain.model.searchnews
+package com.kev.nytimes.domain.model.searcharticles
 
 
 data class Legacy(

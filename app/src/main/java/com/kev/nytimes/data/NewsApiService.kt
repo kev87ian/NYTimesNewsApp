@@ -2,7 +2,7 @@ package com.kev.nytimes.data
 
 import com.kev.nytimes.BuildConfig
 import com.kev.nytimes.data.remote.dto.mostviewed.MostViewedArticlesDTO
-import com.kev.nytimes.data.remote.dto.searchnews.SearchArticlesDTO
+import com.kev.nytimes.data.remote.dto.searcharticles.SearchArticlesDTO
 import com.kev.nytimes.data.remote.dto.topstories.TopStoriesDTO
 import retrofit2.http.GET
 import retrofit2.http.Query
